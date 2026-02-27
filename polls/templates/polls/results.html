@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+<div class="container">
+  <h1>📊 {{ question.question_text }}</h1>
+  <p><strong>Total votes:</strong> {{ total_votes }}</p>
+
+  {% for item in choices_with_percent %}
+    <p>
+      {{ item.choice.choice_text }} —
+      {{ item.choice.votes }} vote(s)
+    </p>
+
+    <div class="result-bar">
+      <div class="result-fill" style="width: {{ item.percent }}%;">
+        {{ item.percent }}%
+      </div>
+    </div>
+  {% endfor %}
+
+  <br>
+  <a href="{% url 'index' %}">🔙 Vote again</a>
+</div>
